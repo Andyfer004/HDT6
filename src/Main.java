@@ -1,15 +1,84 @@
-/**
- * Universidad del Valle de Guatemala
- * Algoritmos y Estructuras de Datos
- * Sección 10
- * 2023
- * Autores:
- *      - 22944 Andy Fuentes
- *      HDT 6
- */
+import java.util.*;
+
 public class Main {
+
     public static void main(String[] args) {
+        Scanner entrada = new Scanner(System.in);
+        Map<String, Integer> mapa;
 
+        controladora controladora = new controladora("HashMap", "/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
+
+        controladora.agregarProductos("HashMap", "/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
+
+
+        // Menú de selección de tipo de mapa
+        System.out.println("Selecciona el tipo de mapa que quieres usar:");
+        System.out.println("1. HashMap");
+        System.out.println("2. LinkedHashMap");
+        System.out.println("3. TreeMap");
+
+        // Leer la opción seleccionada por el usuario
+        int opcion = entrada.nextInt();
+
+        // Seleccionar el tipo de mapa adecuado según la opción
+        switch(opcion) {
+            case 1:
+                mapa = new HashMap<>();
+                break;
+            case 2:
+                mapa = new LinkedHashMap<>();
+                break;
+            case 3:
+                mapa = new TreeMap<>();
+                break;
+            default:
+                System.out.println("Opción no válida. Se usará HashMap por defecto.");
+                mapa = new HashMap<>();
+        }
+
+        // Menú de opciones para el mapa seleccionado
+        boolean seguir = true;
+        while (seguir) {
+            System.out.println("\nSelecciona una opción:");
+            System.out.println("1. Agregar un producto");
+            System.out.println("2. Eliminar un producto");
+            System.out.println("3. Buscar un producto");
+            System.out.println("4. Imprimir todos los productos");
+            System.out.println("5. Vaciar el mapa");
+            System.out.println("6. Salir");
+
+            // Leer la opción seleccionada por el usuario
+            int opcionMenu = entrada.nextInt();
+
+            // Ejecutar la opción seleccionada
+            switch (opcionMenu) {
+                case 1:
+                    System.out.println("Ingresa la clave del producto:");
+                    String clave = entrada.next();
+                    System.out.println("Ingresa el valor del producto:");
+                    int valor = entrada.nextInt();
+                    controladora.agregarProducto(clave, valor);
+                    break;
+                case 2:
+                    System.out.println("Ingresa la clave del producto que quieres eliminar:");
+                    String claveEliminar = entrada.next();
+                    controladora.eliminarProducto(claveEliminar);
+                    break;
+                case 3:
+                    System.out.println("Ingresa la clave del producto que quieres buscar:");
+                    String claveBuscar = entrada.next();
+                    Integer valor = controladora.buscarProducto(claveBuscar);
+                    if (valor != null) {
+                        System.out.println("El valor de " + claveBuscar + " es " + valor);
+                    } else {
+                        System.out.println("No se encontró el producto con clave " + claveBuscar);
+                    }
+                    break;
+            }
+        }
     }
-
 }
+
+
+
+
