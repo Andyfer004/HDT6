@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.IOException;
 
 public class Main {
 
@@ -7,9 +8,6 @@ public class Main {
         Map<String, Integer> mapa;
 
         controladora controladora = new controladora("HashMap", "/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
-
-        controladora.agregarProductos("HashMap", "/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
-
 
         // Menú de selección de tipo de mapa
         System.out.println("Selecciona el tipo de mapa que quieres usar:");
@@ -41,10 +39,10 @@ public class Main {
         while (seguir) {
             System.out.println("\nSelecciona una opción:");
             System.out.println("1. Agregar un producto");
-            System.out.println("2. Eliminar un producto");
-            System.out.println("3. Buscar un producto");
+            System.out.println("2. Para ingresar el nombre del producto para mostrarte la categoria");
+            System.out.println("3. Mostrar categoria, producto y el numero de existencias en la coleccion");
             System.out.println("4. Imprimir todos los productos");
-            System.out.println("5. Vaciar el mapa");
+            System.out.println("5. Imprimir productos por categoría");
             System.out.println("6. Salir");
 
             // Leer la opción seleccionada por el usuario
@@ -53,31 +51,32 @@ public class Main {
             // Ejecutar la opción seleccionada
             switch (opcionMenu) {
                 case 1:
-                    System.out.println("Ingresa la clave del producto:");
-                    String clave = entrada.next();
-                    System.out.println("Ingresa el valor del producto:");
-                    int valor = entrada.nextInt();
-                    controladora.agregarProducto(clave, valor);
+                    controladora.agregarLineaArchivo();
+
                     break;
                 case 2:
-                    System.out.println("Ingresa la clave del producto que quieres eliminar:");
-                    String claveEliminar = entrada.next();
-                    controladora.eliminarProducto(claveEliminar);
+                    controladora.buscarCategoriaProducto( );
                     break;
                 case 3:
-                    System.out.println("Ingresa la clave del producto que quieres buscar:");
-                    String claveBuscar = entrada.next();
-                    Integer valor = controladora.buscarProducto(claveBuscar);
-                    if (valor != null) {
-                        System.out.println("El valor de " + claveBuscar + " es " + valor);
-                    } else {
-                        System.out.println("No se encontró el producto con clave " + claveBuscar);
-                    }
+                    controladora.mostrarProductosColeccion();
                     break;
+                case 4:
+                    controladora.printTextFile("/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
+                    break;
+                case 5:
+                    controladora.printTextFile("/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
+                    break;
+                case 6:
+                    controladora.printTextFile("/Users/andyfer004/IdeaProjects/HDT6/src/ListadoProducto (2).txt");
+                    break;
+                default:
+                    System.out.println("Opción no válida.");
             }
         }
     }
 }
+
+
 
 
 
