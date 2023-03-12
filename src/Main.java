@@ -17,7 +17,6 @@ public class Main {
 
         // Leer la opción seleccionada por el usuario
         int opcion = entrada.nextInt();
-
         // Seleccionar el tipo de mapa adecuado según la opción
         switch(opcion) {
             case 1:
